@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["sti-munene <kinyuamunene.km@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "4.2.3"
+djangorestframework = "3.14.0"
+djangorestframework-simplejwt = "5.2.2"
+django-allauth = "0.52.0"
+dj-rest-auth = {version = "4.0.0", extras = ["with_social"]}
+django-cors-headers = "4.1.0"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
