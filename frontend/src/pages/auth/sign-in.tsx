@@ -8,6 +8,7 @@ import { authOptions } from "../api/auth/[...nextauth]";
 import { Container } from "@/components/Container";
 import { SignInForm } from "@/components/SignInForm";
 import { Button } from "@/components/ui/button";
+import { GenericHead } from "@/components/GenericHead";
 
 const GoogleIcon = () => {
   return (
@@ -45,31 +46,35 @@ export default function SignIn({
   csrfToken,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <main className="">
-      <Container>
-        <div className="mt-4 md:mt-8 md:mx-auto md:w-3/5 lg:w-2/5 md:border border-slate-100 dark:border-slate-900 md:p-4 rounded-md">
-          <h4 className="text-2xl font-medium">Sign In</h4>
+    <>
+      <GenericHead title="Sign in" />
 
-          <SignInForm csrfToken={csrfToken as string} />
+      <main className="">
+        <Container>
+          <div className="mt-4 md:mt-8 md:mx-auto md:w-3/5 lg:w-2/5 md:border border-slate-100 dark:border-slate-900 md:p-4 rounded-md">
+            <h4 className="text-2xl font-medium">Sign In</h4>
 
-          <div>
-            {Object.values(providers)
-              .filter((provider) => provider.name !== "Credentials")
-              .map((provider) => (
-                <div key={provider.name}>
-                  <Button
-                    className="w-full flex items-center gap-2"
-                    onClick={() => signIn(provider.id)}
-                  >
-                    {provider.name === "Google" && <GoogleIcon />}
-                    <span>Sign in with {provider.name}</span>
-                  </Button>
-                </div>
-              ))}
+            <SignInForm csrfToken={csrfToken as string} />
+
+            <div>
+              {Object.values(providers)
+                .filter((provider) => provider.name !== "Credentials")
+                .map((provider) => (
+                  <div key={provider.name}>
+                    <Button
+                      className="w-full flex items-center gap-2"
+                      onClick={() => signIn(provider.id)}
+                    >
+                      {provider.name === "Google" && <GoogleIcon />}
+                      <span>Sign in with {provider.name}</span>
+                    </Button>
+                  </div>
+                ))}
+            </div>
           </div>
-        </div>
-      </Container>
-    </main>
+        </Container>
+      </main>
+    </>
   );
 }
 
